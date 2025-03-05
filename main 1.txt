@@ -1,0 +1,24 @@
+BEGIN {
+    # Definir expresiones regulares
+    regex_plus = "^\\+$"             # Coincide con un solo +
+    regex_double_plus = "^\\+\\+$"      # Coincide con ++
+    regex_integer = "^[0-9]+$"        # Coincide con un número entero
+    regex_float = "^[0-9]+\\.[0-9]+$" # Coincide con un número flotante
+}
+
+{
+    # Leer cada línea del archivo
+    token = $0
+    
+    if (token ~ regex_plus) {
+        print token, "-> TOKEN_PLUS"
+    } else if (token ~ regex_double_plus) {
+        print token, "-> TOKEN_DOUBLE_PLUS"
+    } else if (token ~ regex_integer) {
+        print token, "-> TOKEN_INTEGER"
+    } else if (token ~ regex_float) {
+        print token, "-> TOKEN_FLOAT"
+    } else {
+        print token, "-> TOKEN_DESCONOCIDO"
+    }
+}
